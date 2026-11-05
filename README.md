@@ -6,6 +6,7 @@
 <p><code>C++</code> &nbsp; <code>Solo project</code> &nbsp; <code>SDK 4.0.0</code></p>
 
 <p>
+  <a href="#achievements">Achievements</a> &nbsp; / &nbsp;
   <a href="#algorithm">Algorithm</a> &nbsp; / &nbsp;
   <a href="#results">Results</a> &nbsp; / &nbsp;
   <a href="#source-and-reproduction">Source &amp; reproduction</a>
@@ -18,6 +19,16 @@
 I built **Still Testing** as my solo entry in Cambridge Battlecode Autumn 2026.
 The bot coordinates multiple champions to clear camps, collect resources and
 deliver gems while managing combat, upgrades and a per-turn execution budget.
+
+## Achievements
+
+| Milestone | Result | Date |
+| --- | --- | --- |
+| Global ladder position | **#24 of 689 teams** | 19 October 2026 |
+| Elo milestone | **1,941.5** | 31 October 2026 |
+| Sprint 1 finish | **Top 32 of 601 teams** | 19 October 2026 |
+
+[Recorded milestones](results/achievements.json)
 
 ## Algorithm
 

@@ -1,0 +1,98 @@
+{
+  "team": "Still Testing",
+  "teamId": "67f45d6d-9cd8-403d-ade2-14aad9202201",
+  "scope": "Verified attained milestones at separate dates. These records do not establish an exhaustive all-time rank or rating maximum.",
+  "globalLadderMilestone": {
+    "globalRank": 24,
+    "rankedTeams": 689,
+    "capturedAt": "2026-10-19T05:49:16.705793+00:00",
+    "ladderUpdatedAt": "2026-10-19T05:43:52.831Z",
+    "sourceEndpoint": "/api/v1/ladder",
+    "originalRecordSHA256": "be79649c8e3b70c98bbc3cb6f2d436bdea1e6482c306a5848b4feb1094a28f53",
+    "ownTeamRow": {
+      "teamId": "67f45d6d-9cd8-403d-ade2-14aad9202201",
+      "name": "Still Testing",
+      "category": "international",
+      "rank": 24,
+      "categoryRank": 17,
+      "rating": 1828.5651880967143
+    }
+  },
+  "eloMilestone": {
+    "rating": 1941.549311577205,
+    "displayRating": 1941.5,
+    "capturedAt": "2026-10-31T05:11:24.695058+00:00",
+    "sourceEndpoint": "/api/v1/ladder",
+    "originalRecordSHA256": "6bfb0d7e5a5c677295ffbc3354913b18ea3aa2c6e07cedfca628b1abfe561f1f",
+    "ownTeamRow": {
+      "teamId": "67f45d6d-9cd8-403d-ade2-14aad9202201",
+      "name": "Still Testing",
+      "rank": 79,
+      "rating": 1941.549311577205
+    }
+  },
+  "sprint1": {
+    "name": "Sprint 1",
+    "date": "2026-10-19",
+    "entrants": 601,
+    "placementGroup": {
+      "from": 17,
+      "to": 32,
+      "kind": "derived from single-elimination bracket"
+    },
+    "pairingWins": 4,
+    "pairingLosses": 1,
+    "gameWins": 51,
+    "gameLosses": 24,
+    "sourceURL": "https://2026a.battlecode.co.uk/game/tournaments/fb9b026b-a953-48a1-b1d2-ded1befb8cac",
+    "sourceAPI": "https://2026a.battlecode.co.uk/api/v1/tournaments/fb9b026b-a953-48a1-b1d2-ded1befb8cac",
+    "sourceSHA256": "5ec6d0bcfdfca80b02f0003f640c63c2ed56487ec8c32894570946723d0833e6",
+    "pairings": [
+      {
+        "code": "w2-204",
+        "round": 2,
+        "opponent": "i use arch btw",
+        "ourWins": 15,
+        "opponentWins": 0,
+        "won": true,
+        "groupId": "a44dabcd-692f-4167-ac4e-63cdef7b2d59"
+      },
+      {
+        "code": "w3-102",
+        "round": 3,
+        "opponent": "mostly harmless",
+        "ourWins": 12,
+        "opponentWins": 3,
+        "won": true,
+        "groupId": "a5edcdb5-36d2-4058-b1ad-b9a2ff7178fd"
+      },
+      {
+        "code": "w4-51",
+        "round": 4,
+        "opponent": "Pathfinders",
+        "ourWins": 13,
+        "opponentWins": 2,
+        "won": true,
+        "groupId": "75af67a5-c0c0-4bc2-a7ad-2c5e8419f06b"
+      },
+      {
+        "code": "w5-25",
+        "round": 5,
+        "opponent": "Trzy Kwaterki",
+        "ourWins": 8,
+        "opponentWins": 7,
+        "won": true,
+        "groupId": "83d1d1b7-9fc3-45d0-a846-0088520524b1"
+      },
+      {
+        "code": "w6-12",
+        "round": 6,
+        "opponent": "Nyx",
+        "ourWins": 3,
+        "opponentWins": 12,
+        "won": false,
+        "groupId": "b07d8bb9-0c78-4356-8361-7f3d2f6ac397"
+      }
+    ]
+  }
+}
