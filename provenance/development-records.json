@@ -1,0 +1,75 @@
+{
+  "scope": "Selected fields from original v10 records; complete original records remain in the local research workspace. These records do not establish competitive improvement.",
+  "v10": [
+    {
+      "originalRecord": "independent-source-review-v1.json",
+      "originalSHA256": "193b261515a06fd3475d8a8b347263728e6db508bda046de0ca77a51372ab101",
+      "recordedFields": {
+        "status": "PASS_SOURCE_REVIEW_ONLY",
+        "candidateSourceSHA256": "3478b57c83a1de0f63b91f800da75ba18a15007703d9d2deeb4cc908b59c78b5",
+        "blockers": [],
+        "remainingConcreteBlockers": [],
+        "wholeCandidate": {
+          "count": 229,
+          "sourceFiles": 229,
+          "combinedSHA256": "3478b57c83a1de0f63b91f800da75ba18a15007703d9d2deeb4cc908b59c78b5",
+          "digest": "3478b57c83a1de0f63b91f800da75ba18a15007703d9d2deeb4cc908b59c78b5",
+          "path": "/Users/tuna/.superset/worktrees/CambridgeBattle/sugary-uncle/claude-lab/scratchpad/ws4.0.0/bots/root_qualifier_unified_v10_20261103/src"
+        }
+      }
+    },
+    {
+      "originalRecord": "cross-boundary-source-review-v1.json",
+      "originalSHA256": "1e6e178cb3dd90f3c129ab7fd0e94ea03c331647589352c232bd1f5f0796b69d",
+      "recordedFields": {
+        "status": "PASS_SOURCE_REVIEW_ONLY",
+        "candidateSourceSHA256": "3478b57c83a1de0f63b91f800da75ba18a15007703d9d2deeb4cc908b59c78b5",
+        "blockers": [],
+        "remainingConcreteBlockers": [],
+        "wholeCandidate": {
+          "path": "/Users/tuna/.superset/worktrees/CambridgeBattle/sugary-uncle/claude-lab/scratchpad/ws4.0.0/bots/root_qualifier_unified_v10_20261103/src",
+          "files": 229,
+          "sourceFiles": 229,
+          "combinedSHA256": "3478b57c83a1de0f63b91f800da75ba18a15007703d9d2deeb4cc908b59c78b5"
+        }
+      }
+    },
+    {
+      "originalRecord": "compile-v1/receipt.json",
+      "originalSHA256": "dacd7ecaf661c8d190f5e310c957fcb359a6076cfe0a881249e6cb02d0e11a88",
+      "recordedFields": {
+        "status": "compiled; no games run",
+        "sourceSHA256": "3478b57c83a1de0f63b91f800da75ba18a15007703d9d2deeb4cc908b59c78b5",
+        "sourceFiles": 229,
+        "games": 0,
+        "trials": 0,
+        "platformWrites": 0,
+        "exitCode": 0,
+        "sourceAndToolchainUnchangedAfterCompile": true,
+        "endedAt": "2026-11-03T20:17:31.408232+00:00",
+        "artifacts": {
+          "bot.wasm": {
+            "bytes": 4880302,
+            "sha256": "8a85e06214c9eb9d6ccf2cfef986bc8796b66eb558734285fe43a9c07647ab7d"
+          },
+          "bot-injected.wasm": {
+            "bytes": 1554806,
+            "sha256": "b6cb92764a45a2e8c9ea64e7946cb31c43c7dd654d3c76f9601acbf5b8046f52"
+          }
+        }
+      }
+    },
+    {
+      "originalRecord": "compile-v1-artifact-audit.json",
+      "originalSHA256": "c248d72828b69879bf2ccafaa9d3f80840028cf6d3dc799433398333811f2a0e",
+      "recordedFields": {
+        "verdict": "PASS_INDEPENDENT_V10_COMPILE_ONLY_ARTIFACT_AUDIT",
+        "sourceSHA256": "3478b57c83a1de0f63b91f800da75ba18a15007703d9d2deeb4cc908b59c78b5",
+        "sourceFiles": 229,
+        "receiptAllObservedEndedParentReaped": true,
+        "goalAchieved": false,
+        "promotable": false
+      }
+    }
+  ]
+}
