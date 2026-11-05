@@ -1,67 +1,113 @@
-# Still Testing: Cambridge Battlecode Autumn 2026
+<div align="center">
 
-C++ bot and research archive for the Still Testing solo team.
+<h1>Still Testing</h1>
 
-## Result
+<p><strong>Cambridge Battlecode Autumn 2026</strong></p>
+<p><code>C++</code> &nbsp; <code>Solo project</code> &nbsp; <code>SDK 4.0.0</code></p>
 
-The International Qualifiers finished on 4 November 2026. We did not reach the
-top eight and did not qualify for the international finals.
+<p>
+  <a href="#algorithm">Algorithm</a> &nbsp; / &nbsp;
+  <a href="#results">Results</a> &nbsp; / &nbsp;
+  <a href="#source-and-reproduction">Source &amp; reproduction</a>
+</p>
 
-- Seed 83 among 504 entrants.
-- Four pairing wins and two pairing losses in double elimination.
-- 87 game wins and 39 losses across six 21-game pairings.
-- Tied 65-96 by the completed bracket's elimination cohort. This is a derived
-  range, not an official published ordinal placement.
+</div>
 
-| Pairing | Opponent | Our score | Result |
-| --- | --- | --- | --- |
-| Upper 1 | Gilded Pathfinders | 21-0 | Win |
-| Upper 2 | kata | 16-5 | Win |
-| Upper 3 | SilverSamurai | 10-11 | Loss |
-| Lower 4 | NotSoLonely | 19-2 | Win |
-| Lower 5 | Feral Monoliths | 13-8 | Win |
-| Lower 6 | estrogen :3 | 8-13 | Eliminated |
+---
 
-The [official bracket](https://2026a.battlecode.co.uk/game/tournaments/3e98ebb8-a7eb-4751-bb6a-4aac2d565981),
-[saved public response](results/official-tournament.json) and
-[machine-readable result](results/qualifier-summary.json) support these results.
-Ladder rank, tournament seed and final placing are different measurements.
+I built **Still Testing** as my solo entry in Cambridge Battlecode Autumn 2026.
+The bot coordinates multiple champions to clear camps, collect resources and
+deliver gems while managing combat, upgrades and a per-turn execution budget.
 
-## What we built
+## Algorithm
 
-- A submitted C++ bot with drafting, map recognition, navigation, camp work,
-  combat, resource collection, delivery and upgrades. The final played version
-  was v792. Its last promoted change reduced a late Big World monolith's value.
-- Source and artifact checks that separate the exact submitted bytes from
-  local variants. All 209 files in the retrieved v792 platform archive match
-  the retained local source byte for byte.
-- A dated research census of 817 teams, with engine and time filters, and
-  analyses separating economy, contested work, cargo delivery and upgrades.
-  This archive includes a [research summary](research/README.md), rather than
-  private chat logs or bulk opponent histories.
-- A compiled but unplayed v10 research candidate and a held, uncompiled v11
-  draft. Their source work did not establish a competitive improvement and
-  neither replaced the saved qualifier bot.
+I used a rule-based controller built around **utility scoring**, **grid distance
+fields** and a **finite-state machine**. Generic policies handle the core game
+loop, with map-specific drafting and strategy overrides for recognized layouts.
 
-## Contents
+### Map-aware drafting
 
-| Path | Status |
-| --- | --- |
-| [bots/v792/src](bots/v792/src) | Exact final platform source, 209 files |
-| [archives/v792-platform-source.zip](archives/v792-platform-source.zip) | Original downloaded platform archive |
-| [candidates/v10](candidates/v10/README.md) | Compiled research candidate, never played or promoted |
-| [candidates/v11](candidates/v11/README.md) | Held source draft, never compiled or played |
-| [docs/REPRODUCING.md](docs/REPRODUCING.md) | Dependencies, build instructions and limits |
-| [docs/PROVENANCE.md](docs/PROVENANCE.md) | Hashes and evidence boundaries |
-| [provenance/source-manifests.json](provenance/source-manifests.json) | Per-file source hashes |
-| [tools/verify_archive.py](tools/verify_archive.py) | Offline source and result verification |
+I identify known layouts from map dimensions and terrain patterns, then select
+champions from predefined draft orders. The general draft policy also considers
+team size, access to altars and the opponent's revealed picks.
 
-Run the non-executing archive checks with Python 3:
+Source: [draft dispatch](bots/v792/src/main.cpp) and
+[general draft policy](bots/v792/src/optimized.cpp#L8862).
+
+### Utility-based target selection
+
+I rank reachable camp groups by estimated reward per turn. The score combines
+gems, a changing gold weight, expected reward share, travel time, respawn timing,
+clear time and the cost of recovering from damage. For an uncleared camp, the
+base heuristic is:
+
+```text
+value    = gems + gold_weight * gold
+priority = value * reward_share
+           / (arrival + clear_time + risk_penalty + capture_time * reward_share + 1)
+```
+
+Map and champion weights adjust this score. A bonus for the current target
+reduces unnecessary switching, while allied claims influence estimated damage
+and reward sharing.
+
+Source: [target selection](bots/v792/src/optimized.cpp#L5962).
+
+### Distance-field navigation
+
+I use the SDK's distance fields over bitboard terrain to estimate travel costs
+and choose steps toward a goal. Movement checks visible occupants, uses dashes
+when available and can fall back to terrain-only routing when units block a
+path. Specialized routes also handle teleport access on selected maps.
+
+Source: [movement and occupancy](bots/v792/src/optimized.cpp#L3132).
+
+### Shared-memory coordination
+
+Champions publish compact target IDs and activity states through shared memory.
+I use those claims to avoid duplicate capture assignments, estimate allied
+contributions to camp fights and support role-specific grouping.
+
+Source: [target claims](bots/v792/src/optimized.cpp#L2578).
+
+### State-based combat and economy
+
+The main controller switches between **farming**, **banking** and **recall**.
+Health, carried gems, altar access and nearby threats determine when to leave
+camp work or secure resources. Local combat rules choose attacks, abilities and
+retreats; shopping follows champion-specific build priorities.
+
+Source: [turn controller](bots/v792/src/optimized.cpp#L7990) and
+[purchase policy](bots/v792/src/optimized.cpp#L2848).
+
+## Results
+
+**International Qualifiers, 4 November 2026**
+
+| Entrants | Seed | Pairing record | Game record |
+| :---: | :---: | :---: | :---: |
+| **504** | **83** | **4-2** | **87-39** |
+
+I finished in the **tied 65-96 group**, outside the eight international finals
+places. This range is derived from the completed double-elimination bracket,
+rather than a published individual rank.
+
+[Official bracket](https://2026a.battlecode.co.uk/game/tournaments/3e98ebb8-a7eb-4751-bb6a-4aac2d565981)
+&nbsp; / &nbsp; [Match results](results/qualifier-summary.json)
+
+## Source and reproduction
+
+The qualifier entry was **v792**. Its [209 source files](bots/v792/src) match
+the downloaded platform archive byte for byte. I also retained two later
+research drafts: [v10](candidates/v10/README.md), compiled but unplayed, and
+[v11](candidates/v11/README.md), held before compilation.
+
+Verify the archived source and recorded results without running a bot:
 
 ```sh
 python3 tools/verify_archive.py
 ```
 
-This closeout ran no new bot builds, games, trials or platform changes. Private
-Discord messages, credentials, browser state, downloaded SDKs and bulk runtime
-data are excluded. No license grant for the archived code is implied.
+[Build guide](docs/REPRODUCING.md) &nbsp; / &nbsp;
+[Source provenance](docs/PROVENANCE.md) &nbsp; / &nbsp;
+[Research notes](research/README.md)
